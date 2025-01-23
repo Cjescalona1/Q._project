@@ -1,0 +1,56 @@
+<ion-header [translucent]="true" class="ion-no-border head" >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Servicios</ion-title>
+     
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  
+  <b>
+    Service details
+  </b>
+  <div>
+    <img src={{_service.image}} alt="">
+    <br>
+    <b>
+      {{_service.name}}
+    </b>
+    <br>
+    {{_service.description }}
+    
+    <br>
+    <b>
+      Price
+    </b>
+    <br>
+     ${{_service.price}}
+    <br>
+    
+    <b>
+      Service Modality
+    </b>
+    <br>
+    {{_service.mode ? "Remote" : "In person"}}
+  </div>
+  
+  <a (click)=goto(_service.provider_id) *ngIf="!_self">
+    <ion-button color="medium">
+    Get an appointment
+    </ion-button>
+  </a>    
+  <div style="display: flex; justify-content: space-evenly;">
+    <ion-button color="medium" *ngIf="_self" shape="round"  (click)="goEdit(_service.id)" >
+      <ion-icon slot="start" name="create-outline"></ion-icon>
+      Edit
+    </ion-button>
+    <ion-button color="medium" *ngIf="_self" shape="round" (click)="openModal('Delete',_service.id)"> 
+      <ion-icon slot="start" name="trash-bin-outline"></ion-icon>
+      Delete
+    </ion-button>
+  </div>
+  
+</ion-content> 

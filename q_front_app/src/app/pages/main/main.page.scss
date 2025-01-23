@@ -1,0 +1,124 @@
+
+ 
+@font-face {
+    font-family: "Monserrat";
+    src: url("../../../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
+}
+
+ 
+ion-content{
+   --background: #96a8ad;
+   --color: #fffae1;
+   --ion-default-font: Monserrat;
+
+}
+    
+.dis-flex{
+    display: flex;
+    overflow-y: scroll; 
+}
+ 
+.ict{
+    font-size: medium;
+}
+
+.proServT{
+    font-size: large;
+    padding: 3rem;
+}
+.mainTit{
+    font-size: x-large; 
+}
+.descContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.mainDesc{
+    width: 80%;
+    margin: 5% 10%;
+    text-align: justify;
+    line-height: 1.4;
+    font-weight: normal; 
+    font-family: Monserrat;
+    font-size:  calc(12px + 1.5rem);
+}
+
+
+.searchContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+}
+
+#search{
+  //  background-color: #96a8ad;
+  // color: #fffae1;
+    border-radius: 16px;
+    height: 2.5rem;
+    width: 90%;
+    
+}
+/*
+color base
+#96a8ad
+color texto
+#fffae1
+*/
+.promotedContainer{
+    display: flex;
+}
+.cardTit{
+    font-size: medium;
+}
+.loader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4rem 0;
+}
+ion-modal {
+    --height: 100%;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+  
+  ion-modal::part(backdrop) {
+    background: rgba(209, 213, 219);
+    opacity: 1;
+  }
+  
+  ion-modal ion-toolbar {
+    --background: rgb(204, 195, 143);
+    --color: white;
+  }
+
+  .icon-container{
+    --background: transparent;
+    } 
+
+  .icon{
+    width: 2rem;
+    height: 2rem;
+    }
+ 
+  
+  .serv-container {
+    margin: 0.75rem auto ;
+    border-radius: 16px ;
+    padding: .5rem;
+  }
+
+  .less-margin{
+    margin-left:-0.75 ;
+  }
+
+  @media (width <= 767px) {
+
+    .mainDesc{
+    font-size:  calc(12px + 0.5rem);
+    }
+    
+  }
+ 

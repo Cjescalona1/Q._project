@@ -1,0 +1,183 @@
+ 
+
+<ion-header [translucent]="true" class="ion-no-border head" >
+  <ion-toolbar>
+    <ion-button  color="none"  class="icon-container" style="display: flex;"  [routerLink]="['/main']">
+    
+
+      <img class="icon" src="./../../../assets/images/Q.svg" alt="Q" slot="start">
+    </ion-button>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding flipCard" [fullscreen]="true">
+  
+  <div class="head-log">
+    <img src="" alt="">
+  </div>
+  <div class="card-container">
+    <ion-card *ngIf="log" [ngClass]="{'flip-vertical-fwd' : log}" class="log-reg login-card">
+      <div class="bin">
+        <ion-card-title>
+          Login
+        </ion-card-title>
+        <br>
+        
+        <form  class="form-log" [formGroup]="loginForm" (ngSubmit)="onSubmit(true)">
+          <!-- <label for="first-name">Name: </label>
+          <input id="first-name" type="text" formControlName="name" />
+        
+          <div
+            *ngIf="loginForm.controls.name.invalid && (loginForm.controls.name.dirty || loginForm.controls.name.touched)"
+          >
+            <div *ngIf="loginForm.controls.name.errors?.['required']">
+              Name is required.
+            </div>
+            <div *ngIf="loginForm.controls.name.errors?.['minlength']">
+              Name must be at least 5 characters long.
+            </div>
+          </div>
+         -->
+        
+       
+        <label for="email">Email: </label>
+        <input id="email" type="text" formControlName="email" />
+          
+        <div
+        *ngIf="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)"
+        >
+        <div *ngIf="loginForm.controls.email.errors?.['required']">
+          Emailis required.
+        </div> 
+      </div>   
+     
+      <label for="password">Password: </label>
+      <input id="password" type="text" formControlName="password" />
+    
+      <div
+        *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+      >
+        <div *ngIf="loginForm.controls.password.errors?.['required']">
+          Password is required.
+        </div>
+        <div *ngIf="loginForm.controls.password.errors?.['minlength']">
+          Password must be at least 5 characters long.
+        </div>
+      </div>
+    
+      <label for="password_confirm">Confirm Password : </label>
+      <input id="password_confirm" type="text" formControlName="password_confirm" />
+    
+      <div
+        *ngIf="loginForm.controls.password_confirm.invalid && (loginForm.controls.password_confirm.dirty || loginForm.controls.password_confirm.touched)"
+      >
+        <div *ngIf="loginForm.controls.password.errors?.['required']">
+          Password confirmation is required.
+        </div>
+        <div *ngIf="loginForm.controls.password.errors?.['minlength']">
+          password must be at least 5 characters long.
+        </div>
+      </div>  
+            If you dont have an account <a (click)="toggle()"> Register</a>
+           <div class="but-flex" >
+             <ion-button  color="dark" type="submit" [disabled]="!loginForm.valid">
+               Login
+              </ion-button>           
+            </div>
+        </form>
+        <div>
+            
+        </div>
+      </div>  
+    </ion-card>
+<!-- ///////////////////////////////// -->
+
+    <ion-card *ngIf="!log" [ngClass]="{'flip-vertical-fwd' : !log}" class="log-reg register-card">
+      <div class="bin">
+        <ion-card-title>
+        Register
+        </ion-card-title>
+        <br>
+  
+        <form  class="form-log" [formGroup]="registerForm" (ngSubmit)="onSubmit(false)">
+          
+          <label for="name">Name: </label>
+          <input id="name" type="text" formControlName="name" />
+        
+          <div
+            *ngIf="registerForm.controls.name.invalid && (registerForm.controls.name.dirty || registerForm.controls.name.touched)"
+          >
+            <div *ngIf="registerForm.controls.name.errors?.['required']">
+              Name is required.
+            </div>
+            <div *ngIf="registerForm.controls.name.errors?.['minlength']">
+              Name must be at least 5 characters long.
+            </div>
+          </div>
+      
+        <label for="email">Email: </label>
+        <input id="email" type="text" formControlName="email" />
+      
+       
+        <div
+        *ngIf="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)"
+        >
+        <div *ngIf="registerForm.controls.email.errors?.['required']">
+          Emailis required.
+        </div>
+       
+      </div> 
+      
+     
+     
+      <label for="password">Password: </label>
+      <input id="password" type="text" formControlName="password" />
+    
+      <div
+        *ngIf="registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched)"
+      >
+        <div *ngIf="registerForm.controls.password.errors?.['required']">
+          password is required.
+        </div>
+        <div *ngIf="registerForm.controls.password.errors?.['minlength']">
+          password must be at least 5 characters long.
+        </div>
+      </div>
+    
+      <label for="password_confirm">Confirm Password: </label>
+      <input id="password_confirm" type="text" formControlName="password_confirm" />
+    
+      <div
+        *ngIf="registerForm.controls.password_confirm.invalid && (registerForm.controls.password_confirm.dirty || registerForm.controls.password_confirm.touched)"
+      >
+        <div *ngIf="registerForm.controls.password_confirm.errors?.['required']">
+          Password confirmation is required.
+        </div>
+        <div *ngIf="registerForm.controls.password_confirm.errors?.['minlength']">
+          password must be at least 5 characters long.
+        </div>
+      </div> 
+     
+            If you already have an account <a (click)="toggle()"> Login </a>
+            <!-- <button type="button" (click)="toggle()">Update Profile</button> -->
+           <div class="but-flex">
+              <ion-button  color="dark" type="submit" [disabled]="!registerForm.valid">
+               Register
+              </ion-button>           
+            </div>
+        </form>
+      </div>  
+    </ion-card>
+  </div> 
+  <ion-button (click)="logout() ">
+    logout
+  </ion-button>
+</ion-content>
+<!-- 
+<div class="flipCard"> 
+  <div class="card" onclick="this.classList.toggle('flipped');"> 
+    <div class="side front">Keyword</div> 
+    <div class="side back">Definition<br/>Explanation</div> 
+  </div> 
+</div>  -->

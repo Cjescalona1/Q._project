@@ -15,7 +15,7 @@ export class AppComponent {
       this.LogCtrl.userLogout(sessionStorage.getItem("token"));
       sessionStorage.removeItem('token');
       sessionStorage.removeItem('user');
-      window.location.reload();
+      window.location.assign('/main');
   }
 
   public appPages = [

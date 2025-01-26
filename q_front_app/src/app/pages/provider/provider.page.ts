@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { CalendarService } from 'src/app/api/calendar.service';
 import { CalendarModalPage } from 'src/app/common/calendar-modal/calendar-modal.page';
 import { EventInput } from '@fullcalendar/core';
+import { EventModalPage } from 'src/app/common/event-modal/event-modal.page';
 
 
 @Component({
@@ -55,7 +56,7 @@ export class ProviderPage implements OnInit {
       locale:'es',
       initialView: 'timeGridWeek',
       height:"auto",
-   
+      eventColor: '#8ba1b6',
       //slot configuration
       slotMinTime:'08:00',
       slotMaxTime:'22:00',
@@ -85,7 +86,7 @@ export class ProviderPage implements OnInit {
     selectable: true,
     selectMirror: true,
     dayMaxEvents: true,
-    select: this.handleDateSelect.bind(this),
+   // select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this) 
   
@@ -118,23 +119,31 @@ async openCalModal(ev : any, calendar: any) {
   }
 }
 
-handleDateSelect(selectInfo: DateSelectArg) {
-  //const title = prompt('Elige un titulo para el');
-  var title = "";
-  const calendarApi = selectInfo.view.calendar;
+// handleDateSelect(selectInfo: DateSelectArg) {
+//   //const title = prompt('Elige un titulo para el');
+//   var title = "";
+//   const calendarApi = selectInfo.view.calendar;
 
-  calendarApi.unselect(); // clear date selection
-  let aux_:any = selectInfo; 
-  this.openCalModal(aux_, calendarApi)
+//   calendarApi.unselect(); // clear date selection
+//   let aux_:any = selectInfo; 
+//   this.openCalModal(aux_, calendarApi)
   
-  let aux = selectInfo.view.calendar.getEvents();
+//   let aux = selectInfo.view.calendar.getEvents();
  
+// }
+async handleEventClick(clickInfo: EventClickArg) { 
+  let aux = clickInfo.event;
+  const modal = await this.modalCtrl.create({
+    component: EventModalPage,
+    initialBreakpoint:0.90,
+    componentProps: { _aux : aux, _self : this.self  }
+  });
+  modal.present( );
+  // if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+  //   clickInfo.event.remove();
+  // }
 }
-handleEventClick(clickInfo: EventClickArg) {
-  if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-    clickInfo.event.remove();
-  }
-}
+
 handleEvents(events: EventApi[]) { 
   this.currentEvents.set(this.appo);
   this.changeDetector.detectChanges(); // workaround for pressionChangedAfterItHasBeenCheckedError
@@ -146,7 +155,8 @@ saveEvents(events: EventApi[]) {
 
   async openModal( ev:any ){
       let pass:any={}; 
-      await this.servApi.findService(ev).then(res=>{pass=res.service; }); 
+      
+      await this.servApi.findService(ev).then(res=>{pass=res.service;}); 
    
       const modal = await this.modalCtrl.create({
         component: ServicePage,
@@ -183,16 +193,13 @@ public _Appointment :any;
     this.clean(this._Appointment);   
     
     this.calendarOptions.events= this._Appointment;
-    
-    console.log(this.calendarOptions.events);
+     
     if(this.cleanServ){
 
         for (let index = 0; index < this.cleanServ.length; index++) {
           const element = this.cleanServ[index];
          // console.log(element);
-        }
-
-        
+        } 
     }  
     
   }
@@ -201,7 +208,7 @@ public _Appointment :any;
    serviceClick(arg:any){
     alert(arg.title); 
   }  
-  clean(PreServ_:any):any {
+  clean(PreServ_:any):any { 
     
     let clean_aux : EventInput = {
       start:"",
@@ -227,6 +234,8 @@ public _Appointment :any;
       };
    
     }
+    
+    
     return(this.cleanServ)
   //  console.log(this.cleanServ);
    this.events= this.cleanServ;
@@ -234,4 +243,7 @@ public _Appointment :any;
 
 
   currentEvents = signal<EventApi[]>([]); 
+  goEdit(id:any){
+    window.location.assign("/edit-provider/"+id)
+  }
 }

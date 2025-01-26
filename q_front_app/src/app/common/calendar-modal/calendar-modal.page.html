@@ -1,9 +1,7 @@
 <ion-header [translucent]="true" class="ion-no-border head" >
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
-    </ion-buttons>
-    <ion-title>Servicios</ion-title>
+    
+    <ion-title>Create an appointment</ion-title>
      
   </ion-toolbar>
 </ion-header>
@@ -54,7 +52,7 @@
   <ion-card-content>
     <ion-list *ngFor="let service of _services">
       <!-- <ion-item (click)=serviceClick(service)> -->
-    <ion-item (click)="setTitle(service.name)">
+    <ion-item (click)="setTitle(service.name, service.image, service.id)">
         <ion-thumbnail slot="start">
           <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" /> -->
           <img alt="Silhouette of mountains" src={{service.image}} />

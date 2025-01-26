@@ -1,0 +1,88 @@
+<ion-header [translucent]="true" class="ion-no-border head" >
+  <ion-toolbar>
+    <ion-button color="none" class="icon-container" [routerLink]="['/main']">
+      <img class="icon" src="./../../../assets/images/Q.svg" alt="Q" slot="start">
+    </ion-button>
+    <ion-title ></ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button color="medium"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<!-- // 'name',
+// 'description',
+// 'phone',
+// 'price',
+// 'provider_id' -->
+<ion-content class="ion-padding flipCard" [fullscreen]="true">
+   
+  <div class="head-log">
+    <img src="" alt="">
+  </div>
+  <div class="card-container">
+    <ion-card [ngClass]="'flip-vertical-fwd'" class="log-reg login-card">
+      <div class="bin">
+        <ion-card-title>
+          Edit Profile  
+        </ion-card-title>
+        <br>
+        <form  class="form-log" [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+        
+        <label for="name">Name: </label>
+        <input id="name" type="text" formControlName="name"   />
+          
+        <!-- <div
+        *ngIf="editProfileForm.controls.name.invalid && (editProfileForm.controls.name.dirty || editProfileForm.controls.name.touched)"
+        >
+        <div *ngIf="editProfileForm.controls.name.errors?.['required']">
+          Service name required.
+        </div> 
+      </div>    -->
+      <label for="description">Description: </label>
+      <!-- <input id="description" type="text" formControlName="description" /> -->
+      <textarea id="description" name="story" rows="9" cols="33" formControlName="description" >
+      </textarea>        
+      <!-- <div
+      *ngIf="editProfileForm.controls.description.invalid && (editProfileForm.controls.description.dirty || editProfileForm.controls.description.touched)"
+      >
+      <div *ngIf="editProfileForm.controls.description.errors?.['required']">
+        Service description required.
+      </div> 
+    </div>    -->
+     
+    <label for="phone">Phone: </label>
+    <input id="phone" type="text" formControlName="phone"   />
+
+
+<!-- 
+      <label for="price">Price: </label>
+      <input id="price" type="number" formControlName="price" /> -->
+<!--         
+      <div
+      *ngIf="editProfileForm.controls.price.invalid && (editProfileForm.controls.price.dirty || editProfileForm.controls.price.touched)"
+      >
+      <div *ngIf="editProfileForm.controls.price.errors?.['required']">
+        Service price required.
+      </div> 
+    </div>    -->
+
+    <label for="image">Image: </label> 
+    <input type="file" name="image" id="image" accept="image/*" formControlName="image" 
+    (change)="onFileSelected($event)" #fileUpload>
+    <img src={{auxImg}} alt="image" >
+    
+           
+           <div class="but-flex" >
+             <ion-button id="create-service" color="dark" type="submit" [disabled]="!editProfileForm.valid">
+               Update profile
+              </ion-button>           
+            </div>
+      </form>
+      <div>
+          
+      </div>
+      </div>  
+    </ion-card>   
+  </div> 
+  <ion-toast trigger="create-service" [isOpen]="created" message="Service is updating " [duration]="2000"></ion-toast>
+</ion-content> 

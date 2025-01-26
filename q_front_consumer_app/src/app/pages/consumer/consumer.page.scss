@@ -1,0 +1,53 @@
+
+
+ 
+@font-face {
+    font-family: "Monserrat";
+    src: url("../../../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
+  }
+  
+  
+  ion-content{
+   --background: #96a8ad;
+   --color: #fffae1;
+   --ion-default-font: Monserrat;
+  
+  }
+  .icon-container{
+      --background: transparent;
+      } 
+  
+    .icon{
+      width: 2rem;
+      height: 2rem;
+    
+  }
+  
+  .loader{ 
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center; 
+  } 
+  
+  
+   
+  .serv-container {
+    margin: 0.75rem auto ;
+    border-radius: 16px ;
+    padding: 0rem;
+   
+  }
+  .but-flex{
+    display: flex;
+    justify-content: space-between;
+  }
+  .plus-but{
+    height: 2rem;
+  }
+  .i-item{
+    width: 100%;
+  }
+  .i-item-button{
+    height: fit-content; 
+  } 

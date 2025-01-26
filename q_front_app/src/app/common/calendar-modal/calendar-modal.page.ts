@@ -11,7 +11,9 @@ import { createEventId } from '../../../assets/event-utils';
 export class CalendarModalPage implements OnInit {
  
   name: string;
-  title: any= ""; 
+  title: any= "";
+  service: any= ""; 
+  img: any= ""; 
   prov_id : any = window.location.pathname.split("/")[2];
   
   selectInfo: DateSelectArg 
@@ -23,37 +25,8 @@ export class CalendarModalPage implements OnInit {
   @Input() _services :any = [];
   @Input() aux_ :any = {};
   
-  public events : any =[
-    {
-      id: 1,
-      slotEventOverlap:false,
-      title: ' OOOOO Day Event', 
-      
-    },
-    {
-      id: 2,
-      slotEventOverlap:false,
-      title: 'Long Event',  
-    },
-    {
-      id: 3,
-      slotEventOverlap:false,
-      title: 'Repeating Event',    
-    },
-    { 
-      id:4,
-      title: 'event 1', 
-      allDay:false,
-      editable:false,
-      startEditable:false,
-      durationEditable:false,
-    },
-    { 
-      id: 5,
-      title: 'event 2', 
-    }
-  ];
-
+  public events : any ;
+  
   constructor(
     private modalCtrl: ModalController,
     private servApi : ServicesService,
@@ -82,9 +55,9 @@ export class CalendarModalPage implements OnInit {
         start: this.value.startStr,
         end: this.value.endStr,
         provider_id:this.prov_id,
-        service_id:2,
-        // consumer_id:sessionStorage.getItem("user")
-        consumer_id:10
+        service_id:this.service,
+        consumer_id:sessionStorage.getItem("user")
+        
     }; 
 
 
@@ -107,18 +80,14 @@ export class CalendarModalPage implements OnInit {
   }
   /* */
    
-  async delete() {
-    console.log(this._pass);
+  async delete() { 
     await this.servApi.deleteService(this._pass, sessionStorage.getItem("token")).then(res=>{console.log(res); });
     setTimeout (()=>{window.location.reload()},2.5*1000)
   }
 
-  setTitle(title: any){
- 
-    // console.log(title);
-    // console.log("valueeee",this.value);
-    
+  setTitle(title: any, image:any, serviceId:any){
     this.title = title;
-    
+    this.img = image;
+    this.service = serviceId;     
   }
 }

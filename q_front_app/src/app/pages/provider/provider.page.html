@@ -19,17 +19,28 @@
   </div>
 </ion-content>
 <ion-content class="ion-padding" [fullscreen]="true"  *ngIf=loaded>
-  <h1>  {{_prov.name}}</h1>
-
-  <img src={{_prov.image}} alt="">
+  <div class="but-flex"> 
+    <h1>  {{_prov.name | titlecase }}</h1>    
+    <a  (click)="goEdit(_prov.id)">
+    <ion-button style="margin-top: 0.9rem;  " color="medium" *ngIf="self" shape="round"> 
+        Edit Profile
+    </ion-button>
+    </a>
+  </div>
+  <img class="ion-padding" src={{_prov.image}} alt="">
   <div>
-  
     <h2>
-      Provider description
+      Provider Description
     </h2>
     {{_prov.description}}
     <br>
-    rating : {{_prov.rating}}   
+    <br>
+    Phone :
+    <b>
+      {{_prov.phone}}
+    </b> 
+    <br>
+    rating : <b>{{_prov.rating}}</b>
   </div>
   <!-- --- -->
   <div class="calendar-container">
@@ -55,30 +66,14 @@
       <ion-card class="i-card" (click)="openModal(serv.id)">
         <img alt="Service image" src={{serv.image}} />
         <ion-card-header>
-          <ion-card-title>{{serv.name}}</ion-card-title>
+          <ion-card-title>{{serv.name | titlecase }}</ion-card-title>
           <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
         </ion-card-header>
         <ion-card-content>
           {{serv.description}}
         </ion-card-content>
       </ion-card>
-<!-- 
-      <ion-item class="i-item" (click)="openModal(serv.id)" >
-        <ion-thumbnail slot="start">
-         <img alt="Service image" src={{serv.image}} />
-        </ion-thumbnail>
-         
-        <ion-label>
-          <div  >
-            <b>
-             {{serv.name}}
-            </b>          
-          </div>
-          <br>
-          {{serv.description}}
-        </ion-label>
-        <br>
-      </ion-item> -->
+ 
     </ion-list>
   </div>
 </ion-content>

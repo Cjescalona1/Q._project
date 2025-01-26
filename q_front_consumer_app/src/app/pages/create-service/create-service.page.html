@@ -1,0 +1,91 @@
+<ion-header [translucent]="true" class="ion-no-border head" >
+  <ion-toolbar>
+    <ion-button color="none" class="icon-container" [routerLink]="['/main']">
+      <img class="icon" src="./../../../assets/images/Q.svg" alt="Q" slot="start">
+    </ion-button>
+    <ion-title ></ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button color="medium"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<!-- // 'name',
+// 'description',
+// 'mode',
+// 'price',
+// 'provider_id' -->
+<ion-content class="ion-padding flipCard" [fullscreen]="true">
+   
+  <div class="head-log">
+    <img src="" alt="">
+  </div>
+  <div class="card-container">
+    <ion-card [ngClass]="'flip-vertical-fwd'" class="log-reg login-card">
+      <div class="bin">
+        <ion-card-title>
+          New Service  
+        </ion-card-title>
+        <br>
+        <form  class="form-log" [formGroup]="createServiceForm" (ngSubmit)="onSubmit()">
+        
+        <label for="name">Name: </label>
+        <input id="name" type="text" formControlName="name" />
+          
+        <div
+        *ngIf="createServiceForm.controls.name.invalid && (createServiceForm.controls.name.dirty || createServiceForm.controls.name.touched)"
+        >
+        <div *ngIf="createServiceForm.controls.name.errors?.['required']">
+          Service name required.
+        </div> 
+      </div>   
+      <label for="description">Description: </label>
+      <!-- <input id="description" type="text" formControlName="description" /> -->
+      <textarea id="description" name="story" rows="4" cols="33" formControlName="description" >
+      </textarea>        
+      <div
+      *ngIf="createServiceForm.controls.description.invalid && (createServiceForm.controls.description.dirty || createServiceForm.controls.description.touched)"
+      >
+      <div *ngIf="createServiceForm.controls.description.errors?.['required']">
+        Service description required.
+      </div> 
+    </div>   
+     
+      <label for="mode"> Remote </label>
+      <br>
+      <div>
+        Select On if your service is remote, set off if your service is in person.
+      </div>
+    
+      <ion-toggle  id="mode" type="toggle" formControlName="mode" color="medium"></ion-toggle> 
+      <br />
+
+      <label for="price">Price: </label>
+      <input id="price" type="number" formControlName="price" />
+        
+      <div
+      *ngIf="createServiceForm.controls.price.invalid && (createServiceForm.controls.price.dirty || createServiceForm.controls.price.touched)"
+      >
+      <div *ngIf="createServiceForm.controls.price.errors?.['required']">
+        Service price required.
+      </div> 
+    </div>   
+
+    <label for="image">Image: </label> 
+    <input type="file" name="image" id="image" accept="image/*" formControlName="image" 
+    (change)="onFileSelected($event)" #fileUpload>
+    
+           
+           <div class="but-flex" >
+             <ion-button id="create-service" color="dark" type="submit" [disabled]="!createServiceForm.valid">
+               Create Services
+              </ion-button>           
+            </div>
+      </form>
+      <div>
+          
+      </div>
+      </div>  
+    </ion-card>   
+  </div> 
+  <ion-toast trigger="create-service" [isOpen]="created" message="Service was created succesfully" [duration]="2000"></ion-toast>
+</ion-content> 

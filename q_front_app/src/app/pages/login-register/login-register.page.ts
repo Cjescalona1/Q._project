@@ -29,6 +29,7 @@ export class LoginRegisterPage implements OnInit {
   registerForm = new FormGroup({
     name: new FormControl("", [Validators.required,Validators.minLength(3)]),
     email: new FormControl("", [Validators.required,Validators.email]),
+    phone: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required,Validators.minLength(5)]),
     password_confirm: new FormControl("", [Validators.required,Validators.minLength(5)]),
     });
@@ -51,9 +52,9 @@ export class LoginRegisterPage implements OnInit {
 
       await  this.authApi.providerReg(this.registerForm.value, this.userR).then(res=>{
       console.log("res",res);
-      
         this.userR=res;
         sessionStorage.setItem('token',JSON.stringify(this.userR?.token));
+        sessionStorage.setItem('user',JSON.stringify(this.userR?.provider.id));
       })  
     }
     window.location.replace('/main');

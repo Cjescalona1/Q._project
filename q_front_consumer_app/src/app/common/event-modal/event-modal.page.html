@@ -1,0 +1,60 @@
+ 
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>{{_aux.title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+ 
+<ion-content >
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Appointment Detail</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="ion-padding">
+      <h1>
+        <b>
+        {{_aux.title | titlecase}}
+        </b>
+      </h1> 
+   
+  </div>
+  <div class="ion-padding">
+    <img src={{_service.image}} alt="service image">
+  </div> 
+
+<ion-list class="ion-padding">
+  <ion-item>
+    <ion-select label="Appointment Status" value={{_aux.extendedProps.status}} label-placement="floating">
+      <ion-select-option value="0" disabled="true">Created</ion-select-option>
+      <ion-select-option value="1" disabled="true">Accepted</ion-select-option>
+      <ion-select-option value="2" disabled="true" >Declined</ion-select-option>
+      <ion-select-option value="3" disabled="true">Rated</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list> 
+
+<!-- <div *ngIf="_showOpt" class="ion-padding"  > -->
+  <div class="ion-padding"  >
+  <ion-list>
+    <ion-item>
+      <ion-select label="Rate the Service" value={{_rate}} (ionChange)="setR($event)"  label-placement="floating">
+        <ion-select-option value="1"  disabled="_rated">★☆☆☆☆</ion-select-option>
+        <ion-select-option value="2"  disabled="_rated">★★☆☆☆</ion-select-option>
+        <ion-select-option value="3"  disabled="_rated">★★★☆☆</ion-select-option>
+        <ion-select-option value="4"  disabled="_rated">★★★★☆</ion-select-option>
+        <ion-select-option value="5"  disabled="_rated">★★★★★</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list> 
+</div>
+<ion-toast trigger="create-service" [isOpen]="_changed" message="Thanks for rate the Service" [duration]="5000"></ion-toast>
+</ion-content> 

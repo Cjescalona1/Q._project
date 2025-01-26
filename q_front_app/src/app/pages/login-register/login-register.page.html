@@ -128,6 +128,19 @@
         </div>
        
       </div> 
+
+      <label for="phone">Phone: </label>
+      <input id="phone" type="text" formControlName="phone" />
+    
+     
+      <div
+      *ngIf="registerForm.controls.phone.invalid && (registerForm.controls.phone.dirty || registerForm.controls.phone.touched)"
+      >
+      <div *ngIf="registerForm.controls.phone.errors?.['required']">
+        Phone is required.
+      </div>
+     
+    </div> 
       
      
      
@@ -170,14 +183,8 @@
       </div>  
     </ion-card>
   </div> 
-  <ion-button (click)="logout() ">
+  <!-- <ion-button (click)="logout() ">
     logout
-  </ion-button>
+  </ion-button> -->
 </ion-content>
-<!-- 
-<div class="flipCard"> 
-  <div class="card" onclick="this.classList.toggle('flipped');"> 
-    <div class="side front">Keyword</div> 
-    <div class="side back">Definition<br/>Explanation</div> 
-  </div> 
-</div>  -->
+ 

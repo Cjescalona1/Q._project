@@ -42,6 +42,14 @@ const routes: Routes = [
     path: 'calendar-modal',
     loadChildren: () => import('./common/calendar-modal/calendar-modal.module').then( m => m.CalendarModalPageModule)
   },
+  {
+    path: 'event-modal',
+    loadChildren: () => import('./common/event-modal/event-modal.module').then( m => m.EventModalPageModule)
+  },
+  {
+    path: 'edit-provider/:id',
+    loadChildren: () => import('./pages/edit-provider/edit-provider.module').then( m => m.EditProviderPageModule)
+  },
 
 
   

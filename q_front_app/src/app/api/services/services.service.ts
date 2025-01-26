@@ -109,9 +109,9 @@ export class ServicesService {
   async findProvider(params : any): Promise<any> { 
     let aux: any ;
     let output :any ; 
-    aux = JSON.stringify(params)
+    // aux = JSON.stringify(params)
 
-    await fetch(URL.api+'/providers/'+aux, 
+    await fetch(URL.api+'/providers/'+params, 
       {
         method:'GET',
         headers: {
@@ -124,6 +124,22 @@ export class ServicesService {
     })
     return(output);
   }
+
+  async editProvider(params: any, req: any):Promise<any> {
+
+    let aux; 
+    fetch(URL.api+'/providers/'+params.provider_id,{
+      method:'PUT',
+      body: JSON.stringify(params),
+      headers: {
+              'Content-Type': 'application/json',   
+              'Authorization':`Bearer ${JSON.parse(req)}`
+            } 
+    })
+    .then(res=>res.json()) 
+    .then(res=>{aux=res})
+    return(aux);
+  } 
 
   async findProviderServices(params : any): Promise<any> { 
     let aux: any ;
@@ -144,6 +160,25 @@ export class ServicesService {
     return(output);
   }
 
+  async setAppointment(appointment:any, params: any): Promise<any> {
+    let aux: any ;
+    let output :any ; 
+    aux = JSON.stringify({status:params})
+
+    await fetch(URL.api+'/appointments/'+appointment, 
+      {
+        method:'PUT',
+        body: aux,
+        headers: {
+                'Content-Type': 'application/json',   
+              } 
+      })
+    .then(res=>res.json()) 
+    .then(res=>{output=res})
+    .catch(err=>{console.log(err);
+    })
+    return(output);
+    }
   isolatedImg(imgArr:any){
     return "data:image/jpeg;base64,"+imgArr ;
   };

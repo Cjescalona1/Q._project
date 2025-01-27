@@ -135,13 +135,9 @@ async handleEventClick(clickInfo: EventClickArg) {
   let aux = clickInfo.event;
   const modal = await this.modalCtrl.create({
     component: EventModalPage,
-    
     componentProps: { _aux : aux, _self : this.self  }
   });
   modal.present( );
-  // if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-  //   clickInfo.event.remove();
-  // }
 }
 
 handleEvents(events: EventApi[]) { 

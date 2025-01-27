@@ -135,7 +135,7 @@ async handleEventClick(clickInfo: EventClickArg) {
   let aux = clickInfo.event;
   const modal = await this.modalCtrl.create({
     component: EventModalPage,
-    initialBreakpoint:0.90,
+    
     componentProps: { _aux : aux, _self : this.self  }
   });
   modal.present( );

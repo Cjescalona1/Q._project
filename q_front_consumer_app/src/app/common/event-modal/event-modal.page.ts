@@ -24,8 +24,13 @@ export class EventModalPage implements OnInit {
   ) { }
 
   ngOnInit() {  
+    console.log(this._aux);
+    
     this._rate = this._aux.extendedProps.rating;
-    this._rated = this._aux.extendedProps.status == 3;
+    this._rated = this._aux.extendedProps.status == 1;
+    console.log("to rate",this._rated);
+    console.log("rating ",this._rate);
+    
     this.servApi.findService(this._aux.extendedProps.service_id)
     .then(res => {  
       

@@ -144,6 +144,12 @@ class appointmentController extends Controller
 
             if($request->has('end'))
             {$appointment->end=$request->end;}  
+
+            if($request->has('status'))
+            {$appointment->status=$request->status;}
+
+            if($request->has('rating'))
+            {$appointment->rating=$request->rating;}
          
             $appointment->save();
 

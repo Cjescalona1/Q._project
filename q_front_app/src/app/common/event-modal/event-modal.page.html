@@ -31,7 +31,9 @@
     <img src={{_service.image}} alt="service image">
   </div> 
 
-<ion-list>
+  <div>
+
+<ion-list class="ion-padding" *ngIf=!_showOpt>
   <ion-item>
     <ion-select label="Appointment Status" value={{_aux.extendedProps.status}} label-placement="floating">
       <ion-select-option value="0" disabled="true">Created</ion-select-option>
@@ -41,7 +43,7 @@
     </ion-select>
   </ion-item>
 </ion-list> 
-<div class="ion-padding"  >
+<div class="ion-padding" *ngIf=!_showOpt  >
   <ion-list>
     <ion-item>
       <ion-select label="Rate the Service" value={{_rate}}  label-placement="floating">
@@ -54,8 +56,9 @@
     </ion-item>
   </ion-list> 
 </div>
+</div>
 
-<div *ngIf="_showOpt" style="display: flex; justify-content: space-evenly;" >
+<div *ngIf=_showOpt class="ion-padding" style="display: flex; justify-content: space-evenly;" >
   <ion-button color="medium" *ngIf="_self" shape="round" (click)="appointmentStatus(2)" > 
     <ion-icon slot="start" name="trash-bin-outline" ></ion-icon>
     Decline appointment

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Consumer;
 use Illuminate\Http\Request; 
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator; 
+use Illuminate\Support\Facades\DB;
 class consumerController extends Controller
 {
     public function index(){
@@ -150,6 +151,28 @@ class consumerController extends Controller
                 
                 return(
                  response()->json($data,200)  
+                );
+            }
+        }
+        public function showConsumerAppointments($id){
+       
+            $appointments = DB::table('appointment')->where('consumer_id', $id)->get();
+            
+            if (!$appointments) {
+                $data = [
+                    'message'=>'Appointments from this Consumer not found',
+                    'status'=>'400'
+                ];
+                return response()->json($data, 200);
+            }
+            else{
+                $data = [
+    
+                    'appointments'=>$appointments,
+                    'status'=>'200'
+                ];
+                return(
+                    response()->json($data,200)  
                 );
             }
         }

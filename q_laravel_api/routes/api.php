@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register/prov',[authController::class,'registerProvider']) ;
 Route::post('/register/provider',[authController::class,'regP']);
+Route::post('/register/consumer',[authController::class,'regC']);
 Route::post('/register/cons',[authController::class,'registerConsumer']);
 // Route::post('/login',[authController::class,'login']);
 Route::post('/login/prov',[authController::class,'loginProvider']);
@@ -29,6 +30,8 @@ Route::get ('/consumers/{id}',[consumerController::class ,'show']);
 Route::post ('/consumers',[consumerController::class,'store']);
 Route::put ('/consumers/{id}', [consumerController::class,'update']);
 Route::delete ('/consumers/{id}',[consumerController::class,'destroy']);
+Route::get ('/consumers/appointments/{id}',[consumerController::class ,'showConsumerAppointments']);
+
 
 
 Route::get ('/providers', [providerController::class ,'index']);
@@ -36,7 +39,7 @@ Route::get ('/providers/{id}',[providerController::class ,'show']);
 Route::get ('/providers/services/{id}',[providerController::class ,'showServices']);
 Route::get ('/providers/appointments/{id}',[providerController::class ,'showAppointments']);
 Route::post ('/providers',[providerController::class,'store']);
-Route::put ('/providers/{id}', [providerController::class,'update']);
+Route::put ('/providers/{id}', [providerController::class,'update'])->middleware('auth:sanctum');
 Route::delete ('/providers/{id}',[providerController::class,'destroy']);
 
 

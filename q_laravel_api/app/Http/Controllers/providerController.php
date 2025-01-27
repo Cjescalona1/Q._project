@@ -70,11 +70,11 @@ class providerController extends Controller
                         'description'   => '',
                         'location'      => '' ,
                         'image'         => $request->image,
-                        'phone'         => ''
+                        'phone'         => $request->phone
+                        
                         //'description'   => $request->description ,
                         //'location'      => $request->location ,
                         //'image'         => $request->image ,
-                        //'phone'         => $request->phone
                                                 
                     ]);
                  
